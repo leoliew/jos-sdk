@@ -9,7 +9,7 @@
 $ npm install jos-sdk
 ```
 
-### Use
+### Use Example (获取商品详情)
 
 ```
   var js_config = {
@@ -19,14 +19,11 @@ $ npm install jos-sdk
     format: 'json',
     v: '2.0'
   };
-  var client = new JDClient(jd_config);
-  it('Should be tested', function (done) {
-    client.handleAPI("jingdong.service.promotion.goodsInfo", params, function (err, results) {
-      var data = JSON.parse(results);
-      var ndata = data.jingdong_service_promotion_goodsInfo_responce.getpromotioninfo_result;
-      JSON.parse(ndata).result.should.be.an.instanceOf(Array);
-      done(err);
-    });
+  var params = {"skuIds": "1090817274,10902817274"};
+  var client = new JDClient(js_config);
+  client.handleAPI("jingdong.service.promotion.goodsInfo", params, function (err, results) {
+    console.log('result err is ' + err);
+    console.log(' api result is ' + results);
   });
 ```
 
