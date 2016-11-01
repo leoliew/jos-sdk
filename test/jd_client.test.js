@@ -3,18 +3,12 @@
  */
 var should = require('should');
 var JDClient = require('../lib/index').JDClient;
+var jd_config = require('./jd_config');
 
-describe('JDClient:buildUrl', function(){
-  var config = {
-    access_token: '',
-    app_secret: '',
-    app_key: '',
-    format: 'json',
-    v: '2.0'
-  }
-  var params = {"skuIds":"1090817274,10902817274"};
-  var client = new JDClient(config);
-  it('Should be tested', function(done){
+describe('JDClient:buildUrl', function () {
+  var params = {"skuIds": "1090817274,10902817274"};
+  var client = new JDClient(jd_config);
+  it('Should be tested', function (done) {
     client.handleAPI("jingdong.service.promotion.goodsInfo", params, function (err, results) {
       var data = JSON.parse(results);
       var ndata = data.jingdong_service_promotion_goodsInfo_responce.getpromotioninfo_result;
