@@ -1,6 +1,6 @@
 {
   "name": "jos-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "nodejs sdk for jos",
   "main": "index.js",
   "directories": {
