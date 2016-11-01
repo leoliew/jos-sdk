@@ -1,0 +1,6 @@
+{
+  "name": "Jos-sdk",
+  "tagline": "京东开放API nodejs sdk",
+  "body": "# jos-sdk\r\n京东开放API nodejs sdk\r\n\r\n## 安装使用\r\n\r\n### Install\r\n\r\n```\r\n$ npm install jos-sdk\r\n```\r\n\r\n### Use Example (获取商品详情)\r\n\r\n```\r\n  var js_config = {\r\n    access_token: 'your access token',\r\n    app_secret: 'your app secret',\r\n    app_key: 'you app key',\r\n    format: 'json',\r\n    v: '2.0'\r\n  };\r\n  var params = {\"skuIds\": \"1090817274,10902817274\"};\r\n  var client = new JDClient(js_config);\r\n  client.handleAPI(\"jingdong.service.promotion.goodsInfo\", params, function (err, results) {\r\n    console.log('result err is ' + err);\r\n    console.log(' api result is ' + results);\r\n  });\r\n```\r\n\r\n## 开发调试\r\n\r\nInstall dependencies:\r\n\r\n```shell\r\n$ npm install\r\n```\r\nRun em!\r\n\r\n```shell\r\n$ npm test\r\n```\r\n\r\n### 运行测试用例前需要配置\r\n- 拷贝 ``` test/temp_jd_config.js ``` 文件到 ``` test ``` 目录下, 重命名为jd_config.js\r\n- 填充好 ``` jd_config.js ``` 里需要的配置\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
