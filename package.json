@@ -1,0 +1,38 @@
+{
+  "name": "jos-sdk",
+  "version": "0.0.1",
+  "description": "nodejs sdk for jos",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec -t 30000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leoliew/jos-sdk.git"
+  },
+  "keywords": [
+    "jos",
+    "sdk"
+  ],
+  "dependencies": {
+    "request": "2.65.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "async": "^1.5.0",
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.4.0",
+    "mocha": "*",
+    "mocha-lcov-reporter": "^1.0.0",
+    "nyc": "^2.1.0",
+    "should": "*"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leoliew/jos-sdk/issues"
+  },
+  "homepage": "https://github.com/leoliew/jos-sdk#readme"
+}
