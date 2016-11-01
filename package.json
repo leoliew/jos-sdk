@@ -18,7 +18,10 @@
     "sdk"
   ],
   "dependencies": {
+    "crypto": "0.0.3",
+    "querystring": "^0.2.0",
     "request": "2.65.0",
+    "superagent": "^2.3.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
