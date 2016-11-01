@@ -12,7 +12,6 @@ describe('JDClient:buildUrl', function () {
     client.handleAPI("jingdong.service.promotion.goodsInfo", params, function (err, results) {
       var data = JSON.parse(results);
       var ndata = data.jingdong_service_promotion_goodsInfo_responce.getpromotioninfo_result;
-      console.log(JSON.parse(ndata).result);
       JSON.parse(ndata).result.should.be.an.instanceOf(Array);
       done(err);
     });
