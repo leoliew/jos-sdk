@@ -1,6 +1,8 @@
 # jos-sdk
 京东开放API nodejs sdk
 
+[![npm status](https://nodei.co/npm/jos-sdk.svg?downloads=true&stars=true&downloadRank=true)](https://www.npmjs.com/package/jos-sdk)
+
 ## 安装使用
 
 ### Install
