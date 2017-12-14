@@ -5,15 +5,12 @@ const should = require('should');
 const JDClient = require('../lib/index').JDClient;
 const jd_config = require('./jd_config');
 
-describe('JDClient:handleAPI Test', function () {
-  const params = {"skuIds": "1090817274,10902817274"};
+describe('JDClient:handleAPI Test', () => {
+  const params = ['1090817274', '11024717589'];
   const client = new JDClient(jd_config);
-  it('Should be tested', function (done) {
-    client.handleAPI("jingdong.service.promotion.goodsInfo", params, function (err, results) {
-      const data = JSON.parse(results);
-      const ndata = data.jingdong_service_promotion_goodsInfo_responce.getpromotioninfo_result;
-      JSON.parse(ndata).result.should.be.an.instanceOf(Array);
-      done(err);
-    });
+  it('Should be tested', async () => {
+    const results = await client.getProductInfo(params);
+    results[0].skuId.should.be.equal(1090817274);
+    results[1].skuId.should.be.equal(11024717589);
   });
 });
