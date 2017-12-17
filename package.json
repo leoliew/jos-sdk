@@ -2,7 +2,8 @@
   "name": "jos-sdk",
   "version": "0.0.3",
   "description": "nodejs sdk for jos",
-  "main": "index.js",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "directories": {
     "test": "test"
   },
@@ -18,26 +19,21 @@
     "sdk"
   ],
   "dependencies": {
-    "crypto": "1.0.1",
+    "lodash": "^4.17.4",
     "querystring": "^0.2.0",
     "request": "2.83.0",
-    "superagent": "^3.8.2",
-    "underscore": "^1.8.3"
+    "superagent": "^3.8.2"
   },
   "devDependencies": {
-    "async": "^2.6.0",
-    "coveralls": "^3.0.0",
-    "eslint": "^4.13.1",
-    "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "istanbul": "^0.4.0",
+    "@types/mocha": "^2.2.44",
+    "@types/node": "^8.5.1",
     "mocha": "*",
-    "mocha-lcov-reporter": "^1.0.0",
-    "nyc": "^11.3.0",
-    "should": "*"
+    "mocha-typescript": "^1.1.12",
+    "should": "*",
+    "ts-node": "^4.0.2",
+    "tslint": "^5.8.0",
+    "tslint-config-standard": "^6.0.1",
+    "typescript": "^2.6.1"
   },
   "license": "MIT",
   "bugs": {

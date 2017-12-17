@@ -40,4 +40,6 @@ package-lock.json
 # ide
 .idea
 
-/test/jd_config.js
+/test/jdConfig.ts
+
+dist/
