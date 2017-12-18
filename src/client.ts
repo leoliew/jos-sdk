@@ -2,9 +2,9 @@ import * as crypto from 'crypto'
 import * as querystring from 'querystring'
 import * as request from 'superagent'
 import * as _ from 'lodash'
-import { Utils } from './utils'
+import {Utils} from './utils'
 
-export { Utils } from './utils'
+export {Utils} from './utils'
 
 const defaultConfig = {
   webId: '505422491',
@@ -54,7 +54,7 @@ export class JDClient {
     this.v = v
   }
 
-  public async getProductInfo (skuIds: [string]) {
+  public async getProductInfo (skuIds: string[]) {
     const ids = {skuIds: skuIds.join(',')}
     return await this.handleAPI(jdParser.goodsInfo, ids) || []
   }
