@@ -2,9 +2,9 @@ import * as crypto from 'crypto'
 import * as querystring from 'querystring'
 import * as request from 'superagent'
 import * as _ from 'lodash'
-import {Utils} from './utils'
+import { Utils } from './utils'
 
-export {Utils} from './utils'
+export { Utils } from './utils'
 
 const defaultConfig = {
   webId: '505422491',
@@ -59,12 +59,12 @@ export class JDClient {
     return await this.handleAPI(jdParser.goodsInfo, ids) || []
   }
 
-  public async batchGetCode (params) {
+  public async batchGetCode (params?: { ids: string[], url?: string, webId?: string, channel?: string, unionId?: string }) {
     params.webId = params.webId ? params.webId : defaultConfig.webId
     params.unionId = params.unionId ? params.unionId : defaultConfig.unionId
     params.channel = params.channel ? params.channel : defaultConfig.channel
     params.url = Utils.formatJdUrl(params.ids, params.channel)
-    params.id = params.ids.join(',')
+    Object.assign(params, {id: params.ids.join(',')})
     return await this.handleAPI(jdParser.batchGetCode, params)
   }
 
@@ -105,7 +105,7 @@ export class JDClient {
    * @param appParam
    * @returns {Promise<any>}
    */
-  private async handleAPI (parser, appParam) {
+  private async handleAPI (parser?: { apiParser: string, responseParser: string, resultParser: string, returnParser: string }, appParam?: object) {
     const url = this.signUrl(parser.apiParser, appParam)
     return new Promise((resolve, reject) => {
       request.post(url)
