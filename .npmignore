@@ -39,4 +39,8 @@ jspm_packages
 # ide
 .idea
 
-/test/jd_config.js
+#ts file
+tsconfig.json
+src
+test/*
+dist/test
