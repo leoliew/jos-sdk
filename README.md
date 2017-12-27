@@ -41,5 +41,5 @@ $ npm test
 ```
 
 ### 运行测试用例前需要配置
-- 拷贝 ``` test/temp_jdConfig.js ``` 文件到 ``` test ``` 目录下, 重命名为jdConfig.js
-- 填充好 ``` jdConfig.js ``` 里需要的配置
+- 拷贝 ``` test/temp_jdConfig.ts ``` 文件到 ``` test ``` 目录下, 重命名为jdConfig.ts
+- 填充好 ``` jdConfig.ts ``` 里需要的配置
