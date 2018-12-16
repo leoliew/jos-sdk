@@ -3,7 +3,8 @@
   "extends": [
     "tslint-config-standard"
   ],
-  "jsRules": {},
+  "jsRules": {
+  },
   "rules": {
     "radix": false
   },
