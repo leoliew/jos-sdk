@@ -1,10 +1,9 @@
 import * as crypto from 'crypto'
+import * as util from 'util'
 import * as querystring from 'querystring'
 import * as request from 'superagent'
 import * as _ from 'lodash'
 import { Utils } from './utils'
-
-export { Utils } from './utils'
 
 const defaultConfig = {
   webId: '505422491',
@@ -55,7 +54,9 @@ export class JDClient {
   }
 
   public async getProductInfo (skuIds: string[]) {
-    const ids = {skuIds: skuIds.join(',')}
+    const ids = {
+      skuIds: skuIds.join(',')
+    }
     return await this.handleAPI(jdParser.goodsInfo, ids) || []
   }
 
@@ -64,8 +65,11 @@ export class JDClient {
     params.unionId = params.unionId ? params.unionId : defaultConfig.unionId
     params.channel = params.channel ? params.channel : defaultConfig.channel
     params.url = Utils.formatJdUrl(params.ids, params.channel)
-    Object.assign(params, {id: params.ids.join(',')})
-    return await this.handleAPI(jdParser.batchGetCode, params)
+    Object.assign(params, {
+      id: params.ids.join(',')
+    })
+    const result = await this.handleAPI(jdParser.batchGetCode, params)
+    return result
   }
 
   /**
@@ -95,7 +99,9 @@ export class JDClient {
     }
     sign += this.appSecret
     sign = crypto.createHash('md5').update(sign, 'utf8').digest('hex').toUpperCase()
-    sysParam = Object.assign(sysParam, {sign: sign})
+    sysParam = Object.assign(sysParam, {
+      sign: sign
+    })
     return this.apiUrl + '?' + querystring.stringify(sysParam)
   }
 
@@ -107,22 +113,18 @@ export class JDClient {
    */
   private async handleAPI (parser?: { apiParser: string, responseParser: string, resultParser: string, returnParser: string }, appParam?: object) {
     const url = this.signUrl(parser.apiParser, appParam)
-    return new Promise((resolve, reject) => {
-      request.post(url)
-        .set('Content-Type', 'application/json')
-        .end(function (err, res) {
-          if (err) {
-            reject(err)
-          } else {
-            try {
-              const parsedJson = JSON.parse(res.text)
-              const returnResult = (JSON.parse(parsedJson[parser.responseParser][parser.resultParser])[parser.returnParser])
-              resolve(returnResult)
-            } catch (e) {
-              reject(e)
-            }
-          }
-        })
-    })
+    let returnResult = []
+    try {
+      const response = await request.post(url).set('Content-Type', 'application/json')
+      const parsedJson = JSON.parse(response.text)
+      if (parsedJson.error_response) {
+        console.error(parsedJson.error_response)
+      }
+      returnResult = JSON.parse(parsedJson[parser.responseParser][parser.resultParser])[parser.returnParser]
+    } catch (e) {
+      console.error(e)
+      throw new Error('解析京东api数据出现错误，详情请查看log！')
+    }
+    return returnResult
   }
 }

@@ -39,6 +39,7 @@ package-lock.json
 
 # ide
 .idea
+*.iml
 
 /test/jdConfig.ts
 

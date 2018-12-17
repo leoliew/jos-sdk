@@ -1,6 +1,6 @@
 {
   "name": "jos-sdk",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "nodejs sdk for jos",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -19,21 +19,22 @@
     "sdk"
   ],
   "dependencies": {
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "querystring": "^0.2.0",
-    "request": "2.83.0",
-    "superagent": "^3.8.2"
+    "superagent": "^4.0.0"
   },
   "devDependencies": {
-    "@types/mocha": "^2.2.44",
-    "@types/node": "^8.5.1",
-    "mocha": "*",
-    "mocha-typescript": "^1.1.12",
-    "should": "*",
-    "ts-node": "^4.0.2",
-    "tslint": "^5.8.0",
-    "tslint-config-standard": "^6.0.1",
-    "typescript": "^2.6.1"
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.15",
+    "mocha": "^5.2.0",
+    "mocha-typescript": "^1.1.17",
+    "nock": "^10.0.4",
+    "should": "^13.2.3",
+    "sinon": "^7.2.2",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.2.2"
   },
   "license": "MIT",
   "bugs": {
