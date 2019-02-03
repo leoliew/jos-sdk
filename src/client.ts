@@ -11,7 +11,7 @@ const defaultConfig = {
   channel: 'WL',
   format: 'json',
   v: '2.0',
-  apiUrl: 'http://gw.api.360buy.com/routerjson'
+  apiUrl: 'https://api.jd.com/routerjson'
 }
 
 const jdParser = {
