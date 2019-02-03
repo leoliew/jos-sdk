@@ -1,6 +1,6 @@
 {
   "name": "jos-sdk",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "nodejs sdk for jos",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -20,6 +20,7 @@
   ],
   "dependencies": {
     "lodash": "^4.17.11",
+    "moment-timezone": "^0.5.23",
     "querystring": "^0.2.0",
     "superagent": "^4.0.0"
   },

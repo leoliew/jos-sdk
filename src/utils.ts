@@ -2,8 +2,11 @@
  * Created by leoliew on 2016/11/1.
  */
 
+import * as Moment from 'moment-timezone'
+
 export namespace Utils {
   /**
+   * @deprecated
    * format Date '2016-10-10 11:23:50'
    * @returns {string}
    */
@@ -17,7 +20,9 @@ export namespace Utils {
     const seconds = this.zeroPad(date.getSeconds(), 2)
     return year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds
   }
+
   /**
+   * @deprecated
    * zeroPad
    * @param num
    * @param length
@@ -29,6 +34,35 @@ export namespace Utils {
       num = '0' + num
     }
     return num
+  }
+
+  /**
+   * Get current time's Moment object with timezone
+   *
+   * @param {any} time
+   * @return {Object} the Moment object
+   */
+  export function getCurrentMoment (time?) {
+    Moment.tz.setDefault('Asia/Shanghai')
+    return new Moment(time)
+  }
+
+  /**
+   * Get current time of type timestamp
+   *
+   * @param {any} time
+   */
+  export function getCurrentTimestamp (time?) {
+    return this.getCurrentMoment(time).valueOf()
+  }
+
+  /**
+   * 格式化时间
+   * @param time
+   * @param format
+   */
+  export function formatTime (time?, format?) {
+    return this.getCurrentMoment(time).format(format || 'YYYY-MM-DD')
   }
 
   /**

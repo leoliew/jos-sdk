@@ -85,7 +85,7 @@ export class JDClient {
       format: this.format,
       v: this.v,
       method: method,
-      timestamp: Utils.nowTime(),
+      timestamp: Utils.formatTime(new Date(),'YYYY-MM-DD HH:mm:ss'),
       '360buy_param_json': JSON.stringify(appParam)
     }
     let sign = this.appSecret
