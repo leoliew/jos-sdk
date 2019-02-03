@@ -11,6 +11,14 @@
 $ npm install jos-sdk
 ```
 
+### 获取授权
+
+请求url如下:
+```
+https://oauth.jd.com/oauth/token?grant_type=authorization_code&client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REGISTERED_REDIRECT_URI&code=GET_CODE&state=YOUR_CUSTOM_CODE&client_secret= YOUR_APP_SECRET
+
+```
+
 ### Use Example (获取商品详情)
 
 ```
