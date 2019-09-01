@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --require ts-node/register ---R spec -t 5000 --recursive test/**/*.test.ts"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,23 +19,23 @@
     "sdk"
   ],
   "dependencies": {
-    "lodash": "^4.17.11",
-    "moment-timezone": "^0.5.23",
+    "lodash": "^4.17.15",
+    "moment-timezone": "^0.5.26",
     "querystring": "^0.2.0",
-    "superagent": "^4.0.0"
+    "superagent": "^5.1.0"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.15",
-    "mocha": "^5.2.0",
-    "mocha-typescript": "^1.1.17",
-    "nock": "^10.0.4",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.3",
+    "jest": "^24.9.0",
+    "nock": "^10.0.6",
     "should": "^13.2.3",
-    "sinon": "^7.2.2",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
+    "sinon": "^7.4.1",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.19.0",
     "tslint-config-standard": "^8.0.1",
-    "typescript": "^3.2.2"
+    "typescript": "^3.6.2"
   },
   "license": "MIT",
   "bugs": {

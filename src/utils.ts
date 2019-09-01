@@ -86,4 +86,12 @@ export namespace Utils {
     return urlArr.join(',')
   }
 
+  /**
+   * 转换京东链接
+   * @param id
+   */
+  export function transJdUrl (id: string) {
+    return `http://item.jd.com/${id}.html`
+  }
+
 }
