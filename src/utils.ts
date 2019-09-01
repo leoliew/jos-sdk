@@ -66,6 +66,7 @@ export namespace Utils {
   }
 
   /**
+   * @deprecated
    * format jd url
    * @param ids
    * @param type
@@ -87,6 +88,7 @@ export namespace Utils {
   }
 
   /**
+   * @deprecated
    * 转换京东链接
    * @param id
    */
