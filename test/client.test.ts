@@ -28,7 +28,7 @@ describe('JDClient:handleAPI Test', () => {
     expect(results[0]).toHaveProperty('skuId')
     expect(results[1]).toHaveProperty('skuId')
   })
-  test('Should batchGetCode success!', async () => {
+  test('Should commonGet success!', async () => {
     const mock = JSON.stringify({
       jd_union_open_promotion_common_get_response:
         {
