@@ -2,8 +2,14 @@
  * Created by leoliew on 2016/11/1.
  */
 import { JDClient } from '../src'
-import { jdConfig } from './jdConfig'
+// import { jdConfig } from './jdConfig'
 import * as nock from 'nock'
+
+const jdConfig = {
+  accessToken: '',
+  appKey: 'test',
+  appSecret: 'test'
+}
 
 describe('JDClient:handleAPI Test', () => {
   const client = new JDClient(jdConfig.appKey, jdConfig.appSecret)
@@ -20,8 +26,8 @@ describe('JDClient:handleAPI Test', () => {
           code: '0'
         }
     })
-    nock('https://api.jd.com/routerjson')
-      .post(/goodsInfo/)
+    nock('https://router.jd.com/api')
+      .post(/goods\.promotiongoodsinfo\.query/)
       .reply(200, mock)
     const params = ['1090817274', '8249616']
     const results = await client.getProductInfo(params)
@@ -38,7 +44,7 @@ describe('JDClient:handleAPI Test', () => {
           code: '0'
         }
     })
-    nock('https://api.jd.com/routerjson')
+    nock('https://router.jd.com/api')
       .post(/common/)
       .reply(200, mock)
     const params = {
@@ -61,7 +67,7 @@ describe('JDClient:handleAPI Test', () => {
           }
       }
     )
-    nock('https://api.jd.com/routerjson')
+    nock('https://router.jd.com/api')
       .post(/open\.order\.query/)
       .reply(200, mock)
     const params = {
@@ -85,7 +91,7 @@ describe('JDClient:handleAPI Test', () => {
           }
       }
     )
-    nock('https://api.jd.com/routerjson')
+    nock('https://router.jd.com/api')
       .post(/goods\.jingfen\.query/)
       .reply(200, mock)
     const results = await client.goodsJingfenQuery({
@@ -114,7 +120,7 @@ describe('JDClient:handleAPI Test', () => {
           }
       }
     )
-    nock('https://api.jd.com/routerjson')
+    nock('https://router.jd.com/api')
       .post(/category\.goods\.get/)
       .reply(200, mock)
     const results = await client.categoryGoodsGet({
@@ -139,7 +145,7 @@ describe('JDClient:handleAPI Test', () => {
           }
       }
     )
-    nock('https://api.jd.com/routerjson')
+    nock('https://router.jd.com/api')
       .post(/user\.pid\.get/)
       .reply(200, mock)
     const results = await client.pidGet({
