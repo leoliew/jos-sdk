@@ -1,5 +1,4 @@
 import * as crypto from 'crypto'
-import * as util from 'util'
 import * as querystring from 'querystring'
 import * as request from 'superagent'
 import * as _ from 'lodash'
@@ -12,8 +11,86 @@ const defaultConfig = {
 }
 
 const jdAPI = {
-  goodsInfo: 'jd.union.open.goods.promotiongoodsinfo.query',
-  commentGet: 'jd.union.open.promotion.common.get'
+  goodsInfo: {
+    method: 'jd.union.open.goods.promotiongoodsinfo.query',
+    version: '1.0'
+  },
+  commentGet: {
+    method: 'jd.union.open.promotion.common.get',
+    version: '1.0'
+  },
+  orderQuery: {
+    method: 'jd.union.open.order.query',
+    version: '1.0'
+  },
+  orderBonusQuery: {
+    method: 'jd.union.open.order.bonus.query',
+    version: '1.0'
+  },
+  goodsQuery: {
+    method: 'jd.union.open.goods.query',
+    version: '1.0'
+  },
+  goodsJingfenQuery: {
+    method: 'jd.union.open.goods.jingfen.query',
+    version: '1.0'
+  },
+  goodsBigFieldQuery: {
+    method: 'jd.union.open.goods.bigfield.query',
+    version: '1.0'
+  },
+  goodsLinkQuery: {
+    method: 'jd.union.open.goods.link.query',
+    version: '1.0'
+  },
+  couponQuery: {
+    method: 'jd.union.open.coupon.query',
+    version: '1.0'
+  },
+  categoryGoodsGet: {
+    method: 'jd.union.open.category.goods.get',
+    version: '1.0'
+  },
+  goodsStudentPriceQuery: {
+    method: 'jd.union.open.goods.stuprice.query',
+    version: '1.0'
+  },
+  goodsSecKillQuery: {
+    method: 'jd.union.open.goods.seckill.query',
+    version: '1.0'
+  },
+  goodsPromotionGoodsInfoQuery: {
+    method: 'jd.union.open.goods.promotiongoodsinfo.query',
+    version: '1.0'
+  },
+  positionCreate: {
+    method: 'jd.union.open.position.create',
+    version: '1.0'
+  },
+  appletGet: {
+    method: 'jd.union.open.promotion.applet.get',
+    version: '1.0'
+  },
+  subUnionIdGet: {
+    method: 'jd.union.open.promotion.subunionid.get',
+    version: '1.0'
+  },
+  byUnionIdGet: {
+    method: 'jd.union.open.promotion.byunionid.get',
+    version: '1.0'
+  },
+  pidGet: {
+    method: 'jd.union.open.user.pid.get',
+    version: '1.1'
+  },
+  positionQuery: {
+    method: 'jd.union.open.position.query',
+    version: '1.0'
+  },
+  couponImportation: {
+    method: 'jd.union.open.coupon.importation',
+    version: '1.0'
+  }
 }
 
 /**
@@ -40,6 +117,10 @@ export class JDClient {
     this.v = v
   }
 
+  /**
+   * 根据sku获取产品数据
+   * @param skuIds
+   */
   public async getProductInfo (skuIds: string[]) {
     const ids = {
       skuIds: skuIds.join(',')
@@ -51,16 +132,65 @@ export class JDClient {
    * 获取通用推广链接
    * @param params
    */
-  public async commonGet (params: { promotionCodeReq: { materialId: string, siteId?: string, positionId?: string, subUnionId?: string, ext1?: string, pid?: string, couponUrl?: string } }) {
-    return await this.handleAPI(jdAPI.commentGet, params)
+  public async commonGet (params: { materialId: string, siteId?: string, positionId?: string, subUnionId?: string, ext1?: string, pid?: string, couponUrl?: string }) {
+    const requestParams = {
+      promotionCodeReq: params
+    }
+    return await this.handleAPI(jdAPI.commentGet, requestParams)
   }
 
   /**
-   * return the parameter of signature
-   * @param {String} method, method name
-   * @param {Object} appParam, method parameter
+   * 订单查询接口
+   * @param params
    */
-  private signUrl (method: string, appParam: object) {
+  public async orderQuery (params: { pageNo: number, pageSize: number, type: number, time: string }) {
+    const requestParams = {
+      orderReq: params
+    }
+    return await this.handleAPI(jdAPI.orderQuery, requestParams)
+  }
+
+  /**
+   * 京粉精选查询接口
+   * @param params
+   */
+  public async goodsJingfenQuery (params: { eliteId: number, pageIndex: number, pageSize: number, sortName: string, sort: string }) {
+    const requestParams = {
+      goodsReq: params
+    }
+    return await this.handleAPI(jdAPI.goodsJingfenQuery, requestParams)
+  }
+
+
+  /**
+   * 商品类目查询
+   * @param params
+   */
+  public async categoryGoodsGet (params: { parentId: number, grade: number }) {
+    const requestParams = {
+      req: params
+    }
+    return await this.handleAPI(jdAPI.categoryGoodsGet, requestParams)
+  }
+
+  /**
+   * 获取PID
+   * @param params
+   */
+  public async pidGet (params: { unionId: number, childUnionId: number, promotionType: number, positionName?: string, mediaName?: string }) {
+    const requestParams = {
+      pidReq: params
+    }
+    return await this.handleAPI(jdAPI.pidGet, requestParams)
+  }
+
+
+  /**
+   * return the parameter of signature
+   * @param jdApi
+   * @param appParam
+   */
+  private signUrl (jdApi: { method: string, version: string }, appParam: object) {
     let params = []
     let sysParam: {
       app_key: string,
@@ -74,9 +204,9 @@ export class JDClient {
     } = {
       app_key: this.appKey,
       format: this.format,
-      method: method,
+      method: jdApi.method,
       sign_method: 'md5',
-      v: this.v,
+      v: jdApi.version || this.v,
       timestamp: Utils.formatTime(new Date(), 'YYYY-MM-DD HH:mm:ss'),
       param_json: JSON.stringify(appParam)
     }
@@ -106,8 +236,8 @@ export class JDClient {
    * @param appParam
    * @returns {Promise<any>}
    */
-  private async handleAPI (jdApi: string, appParam?: object) {
-    const responseParser = jdApi.replace(/\./g, '_') + '_response'
+  private async handleAPI (jdApi: { method: string, version: string }, appParam?: object) {
+    const responseParser = jdApi.method.replace(/\./g, '_') + '_response'
     const url = this.signUrl(jdApi, appParam)
     let returnResult
     try {
@@ -119,7 +249,7 @@ export class JDClient {
       returnResult = JSON.parse(parsedJson[responseParser]['result'])['data']
     } catch (e) {
       console.error(e)
-      throw new Error('解析京东api数据出现错误，详情请查看log！')
+      throw new Error(`解析京东api数据出现错误，详情请查看log！${e}`)
     }
     return returnResult
   }
