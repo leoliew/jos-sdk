@@ -66,6 +66,7 @@ export namespace Utils {
   }
 
   /**
+   * @deprecated
    * format jd url
    * @param ids
    * @param type
@@ -84,6 +85,15 @@ export namespace Utils {
       urlArr.push(jdurl[type] + id + '.html')
     }
     return urlArr.join(',')
+  }
+
+  /**
+   * @deprecated
+   * 转换京东链接
+   * @param id
+   */
+  export function transJdUrl (id: string) {
+    return `http://item.jd.com/${id}.html`
   }
 
 }
